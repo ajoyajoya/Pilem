@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Pilem</string>
+    <string name="title_movies">Movies</string>
+    <string name="title_tvshow">TV Show</string>
+
+    <string name="logo">Logo Film</string>
+
+    <string name="movie_title">A Star is Born</string>
+    <string name="movie_category">Drama | 1h 51min | 10/21/2016</string>
+    <string name="movie_desc">Against his father Odin will, The Mighty Thor a powerful but arrogant warrior god recklessly reignites an ancient war. Against his father Odin will, The Mighty Thor a powerful but arrogant warrior god recklessly reignites an ancient war. Against his father Odin will, The Mighty Thor a powerful but arrogant warrior god recklessly reignites an ancient war. \n  Against his father Odin will, The Mighty Thor a powerful but arrogant warrior god recklessly reignites an ancient war.  Against his father Odin will, The Mighty Thor a powerful but arrogant warrior god recklessly reignites an ancient war.  Against his father Odin will, The Mighty Thor a powerful but arrogant warrior god recklessly reignites an ancient war.</string>
+    <string name="movie_rate">7.1</string>
+    <string name="max_movie_rate">/10</string>
+    <string name="movie_crew_title">Featured Crew</string>
+    <string name="movie_crew_name1">James Mangold</string>
+    <string name="movie_crew_job1">Director, Screenplay, Story</string>
+    <string name="movie_crew_name2">David James Kelly</string>
+    <string name="movie_crew_job2">Story</string>
+    <string name="trailer_title">Trailer</string>
+    <string name="overview_title">Overview</string>
+    <string name="this_is_poster">This is for Poster Movie</string>
+    <string name="this_for_background_image">This for Background Image Trailer Link</string>
+    <string name="this_for_button">This for Button Play Trailer Link</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>
