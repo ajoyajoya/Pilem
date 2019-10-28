@@ -15,7 +15,7 @@ public class TvShowViewModelTest {
 
     @Before
     public void setUp() {
-        viewModel = new TvShowViewModel();
+        //viewModel = new TvShowViewModel();
     }
 
     @Test

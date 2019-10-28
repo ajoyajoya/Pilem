@@ -19,8 +19,8 @@ public class DetailMovieViewModelTest {
     public void setUp() {
         viewModel = new DetailMovieViewModel();
         dummyMovie = new MovieEntity(
-                "m1",
-                R.drawable.poster_a_star,
+                1,
+                "R.drawable.poster_a_star",
                 "A Star is Born (2018)",
                 "7.8",
                 "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
@@ -31,12 +31,12 @@ public class DetailMovieViewModelTest {
     public void setUp1() {
         viewModel = new DetailMovieViewModel();
         dummyTvshow = new TvshowEntity(
-                "tv1",
+                1,
                 "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.",
                 "Arrow (2012)",
                 "7.6",
                 "TV-14 | 42min | Action, Adventure, Crime | TV Series (2012– )",
-                R.drawable.tv_poster_arrow);
+                "R.drawable.tv_poster_arrow");
     }
 
     @Test

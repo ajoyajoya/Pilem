@@ -15,7 +15,7 @@ public class MovieViewModelTest {
 
     @Before
     public void setUp() {
-        viewModel = new MovieViewModel();
+        //viewModel = new MovieViewModel();
     }
 
     @Test

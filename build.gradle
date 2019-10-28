@@ -49,4 +49,5 @@ ext {
     glideVersion = '4.9.0'
     idleResourceVersion = '3.2.0'
     wasabeefglideVersion = '4.0.0'
+    loopjAsyncVersion = '1.4.9'
 }

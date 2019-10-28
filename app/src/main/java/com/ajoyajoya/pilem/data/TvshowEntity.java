@@ -2,14 +2,14 @@ package com.ajoyajoya.pilem.data;
 
 public class TvshowEntity {
 
-    private String tvId;
-    private int tvPoster;
+    private int tvId;
+    private String tvPoster;
     private String tvName;
     private String tvRated;
     private String tvCategory;
     private String tvDesc;
 
-    public TvshowEntity(String tvId, String tvDesc, String tvName, String tvRated, String tvCategory, int tvPoster) {
+    public TvshowEntity(int tvId, String tvDesc, String tvName, String tvRated, String tvCategory, String tvPoster) {
         this.tvId = tvId;
         this.tvPoster = tvPoster;
         this.tvName = tvName;
@@ -19,19 +19,19 @@ public class TvshowEntity {
     }
 
 
-    public String getTvId() {
+    public int getTvId() {
         return tvId;
     }
 
-    public void setTvId(String tvId) {
+    public void setTvId(int tvId) {
         this.tvId = tvId;
     }
 
-    public int getTvPoster() {
+    public String getTvPoster() {
         return tvPoster;
     }
 
-    public void setTvPoster(int tvPoster) {
+    public void setTvPoster(String tvPoster) {
         this.tvPoster = tvPoster;
     }
 

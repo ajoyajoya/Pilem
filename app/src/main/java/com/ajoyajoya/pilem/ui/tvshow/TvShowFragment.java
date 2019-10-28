@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,8 @@ import android.widget.ProgressBar;
 
 import com.ajoyajoya.pilem.R;
 import com.ajoyajoya.pilem.data.TvshowEntity;
+import com.ajoyajoya.pilem.ui.tvshow.TvShowViewModel;
+import com.ajoyajoya.pilem.viewmodel.ViewModelFactory;
 
 import java.util.List;
 
@@ -56,15 +59,26 @@ public class TvShowFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         progressBar.setVisibility(View.VISIBLE);
         if (getActivity() != null) {
-            TvShowViewModel tvShowViewModel = ViewModelProviders.of(this).get(TvShowViewModel.class);
-            List<TvshowEntity> tvshows = tvShowViewModel.getTvShow();
+            TvShowViewModel tvShowViewModel = obtainViewModel(getActivity());
+
+
             TvShowAdapter tvShowAdapter = new TvShowAdapter(getActivity());
-            tvShowAdapter.setListTvShow(tvshows);
+
+            tvShowViewModel.getAllTvShow().observe(this, tvies -> {
+                tvShowAdapter.setListTvShow(tvies);
+                tvShowAdapter.notifyDataSetChanged();
+            });
+
             rvTvshow.setLayoutManager(new GridLayoutManager(getContext(),2));
             rvTvshow.setHasFixedSize(true);
             rvTvshow.setAdapter(tvShowAdapter);
         }
         progressBar.setVisibility(View.GONE);
+    }
+
+    private TvShowViewModel obtainViewModel(FragmentActivity activity) {
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+        return ViewModelProviders.of(activity, factory).get(TvShowViewModel.class);
     }
 
 }

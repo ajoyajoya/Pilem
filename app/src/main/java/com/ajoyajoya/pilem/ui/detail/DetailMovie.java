@@ -64,7 +64,7 @@ public class DetailMovie extends AppCompatActivity {
                 switch (pilemType){
                     case 'm':
                         DetailMovieViewModel viewModel = ViewModelProviders.of(this).get(DetailMovieViewModel.class);
-                        viewModel.setMovieId(movieId);
+                        viewModel.setMovieId(Integer.parseInt(movieId));
                         MovieEntity mmovies = viewModel.getMovie();
 
                         tvMovieName.setText(mmovies.getMovieName());
@@ -104,7 +104,7 @@ public class DetailMovie extends AppCompatActivity {
                     case 't':
 
                         viewModel = ViewModelProviders.of(this).get(DetailMovieViewModel.class);
-                        viewModel.setTvshowId(movieId);
+                        viewModel.setTvshowId(Integer.parseInt(movieId));
                         TvshowEntity mtvshows = viewModel.getTvshow();
 
                         tvMovieName.setText(mtvshows.getTvName());

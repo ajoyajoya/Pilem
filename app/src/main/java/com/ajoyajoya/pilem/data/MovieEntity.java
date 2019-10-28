@@ -2,14 +2,14 @@ package com.ajoyajoya.pilem.data;
 
 public class MovieEntity {
 
-    private String movieId;
-    private int moviePoster;
+    private int movieId;
+    private String moviePoster;
     private String movieName;
     private String movieRated;
     private String movieCategory;
     private String movieDesc;
 
-    public MovieEntity(String movieId, int moviePoster, String movieName, String movieRated, String movieCategory, String movieDesc) {
+    public MovieEntity(int movieId, String moviePoster, String movieName, String movieRated, String movieCategory, String movieDesc) {
         this.movieId = movieId;
         this.moviePoster = moviePoster;
         this.movieName = movieName;
@@ -18,19 +18,19 @@ public class MovieEntity {
         this.movieDesc = movieDesc;
     }
 
-    public String getMovieId() {
+    public int getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(String movieId) {
+    public void setMovieId(int movieId) {
         this.movieId = movieId;
     }
 
-    public int getMoviePoster() {
+    public String getMoviePoster() {
         return moviePoster;
     }
 
-    public void setMoviePoster(int moviePoster) {
+    public void setMoviePoster(String moviePoster) {
         this.moviePoster = moviePoster;
     }
 
