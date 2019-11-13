@@ -2,49 +2,36 @@ package com.ajoyajoya.pilem.ui.detail;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.ajoyajoya.pilem.R;
-import com.ajoyajoya.pilem.data.MovieEntity;
-import com.ajoyajoya.pilem.data.TvshowEntity;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
+import com.ajoyajoya.pilem.viewmodel.ViewModelFactory;
 
 import java.util.Objects;
-
-import jp.wasabeef.glide.transformations.BlurTransformation;
-
-import static com.ajoyajoya.pilem.utils.GlideOptions.bitmapTransform;
 
 public class DetailMovie extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE = "extra_movie";
 
-    private NestedScrollView bgMovieDetail;
+    private RecyclerView rvPilem;
+    private ProgressBar progressBar;
+    //DetailMovieAdapter pilemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
 
-        TextView tvMovieName = findViewById(R.id.txt_movie_name);
-        TextView tvMovieRate = findViewById(R.id.txt_movie_rate);
-        TextView tvMovieCat = findViewById(R.id.txt_movie_cat);
-        TextView tvMovieDesc = findViewById(R.id.txt_movie_desc);
-        ImageView imgMoviePoster = findViewById(R.id.img_poster_movie);
-        ImageView imgTrailerLink = findViewById(R.id.img_trailer_link);
-        bgMovieDetail = findViewById(R.id.bg_movie_detail);
+        rvPilem = findViewById(R.id.rv_list_pilem);
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.getIndeterminateDrawable().setColorFilter(0xFF8C1127,android.graphics.PorterDuff.Mode.MULTIPLY);
 
         setActionBarTitle();
 
@@ -55,95 +42,60 @@ public class DetailMovie extends AppCompatActivity {
         }
 
         Bundle extras = getIntent().getExtras();
+
+        DetailMovieViewModel detailMovieViewModel = obtainViewModel(this);
+        DetailMovieAdapter pilemAdapter = new DetailMovieAdapter(this);
+
         if (extras != null) {
             String movieId = extras.getString(EXTRA_MOVIE);
             if (movieId != null) {
 
                 char pilemType = movieId.charAt(0);
+                int idPilem = Integer.parseInt(movieId.substring(1));
+                System.out.println(idPilem);
+
+                showLoading(true);
+
+                detailMovieViewModel.setMovieId(idPilem);
 
                 switch (pilemType){
                     case 'm':
-                        DetailMovieViewModel viewModel = ViewModelProviders.of(this).get(DetailMovieViewModel.class);
-                        viewModel.setMovieId(Integer.parseInt(movieId));
-                        MovieEntity mmovies = viewModel.getMovie();
 
-                        tvMovieName.setText(mmovies.getMovieName());
-                        tvMovieRate.setText(mmovies.getMovieRated());
-                        tvMovieCat.setText(mmovies.getMovieCategory());
-                        tvMovieDesc.setText(mmovies.getMovieDesc());
+                        //Toast.makeText(getApplicationContext(),"Movie Detail" + idPilem,Toast.LENGTH_LONG).show();
 
-                        Glide.with(this).load(mmovies.getMoviePoster()).into(imgMoviePoster);
-                        Glide.with(this).load(mmovies.getMoviePoster()).into(imgTrailerLink);
+                        detailMovieViewModel.getMoviesDetail().observe(this, detailMovies -> {
 
-                        //noinspection deprecation
-                        Glide.with(this).load(mmovies.getMoviePoster())
-                                .apply(bitmapTransform(new BlurTransformation(25, 3)))
-                                .into(new SimpleTarget<Drawable>() {
-                                    @Override
-                                    public void onResourceReady(@NonNull Drawable resource, Transition<? super Drawable> transition) {
-                                        bgMovieDetail.setBackground(resource);
-                                    }
-                                });
+                            showLoading(false);
+                            pilemAdapter.setListMovie(detailMovies);
+                            pilemAdapter.notifyDataSetChanged();
 
-                        float backgroundRating = Float.parseFloat(mmovies.getMovieRated());
+                            System.out.println("Dari Fragment Movies" + detailMovies);
 
-                        if (backgroundRating>=8.0){
-                            tvMovieRate.setTextColor(Color.parseColor("#3498db"));
-                        } else if (backgroundRating>=7.0){
-                            tvMovieRate.setTextColor(Color.parseColor("#2ecc71"));
-                        } else if (backgroundRating>=6.0){
-                            tvMovieRate.setTextColor(Color.parseColor("#f1c40f"));
-                        } else if (backgroundRating>=5.0){
-                            tvMovieRate.setTextColor(Color.parseColor("#e67e22"));
-                        } else {
-                            tvMovieRate.setTextColor(Color.parseColor("#e74c3c"));
-                        }
+                            rvPilem.setLayoutManager(new LinearLayoutManager(this));
+                            rvPilem.setHasFixedSize(true);
+                            rvPilem.setAdapter(pilemAdapter);
+
+                        });
 
                         break;
 
                     case 't':
 
-                        viewModel = ViewModelProviders.of(this).get(DetailMovieViewModel.class);
-                        viewModel.setTvshowId(Integer.parseInt(movieId));
-                        TvshowEntity mtvshows = viewModel.getTvshow();
+                        //Toast.makeText(getApplicationContext(),"TV Show Detail" + idPilem,Toast.LENGTH_LONG).show();
 
-                        tvMovieName.setText(mtvshows.getTvName());
-                        tvMovieRate.setText(mtvshows.getTvRated());
-                        tvMovieCat.setText(mtvshows.getTvCategory());
+                        detailMovieViewModel.getTviesDetail().observe(this, detailTvies -> {
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            tvMovieDesc.setText(Html.fromHtml(mtvshows.getTvDesc(), Html.FROM_HTML_MODE_COMPACT));
-                        } else {
-                            tvMovieDesc.setText(Html.fromHtml(mtvshows.getTvDesc()));
-                        }
+                            showLoading(false);
+                            pilemAdapter.setListMovie(detailTvies);
+                            pilemAdapter.notifyDataSetChanged();
 
+                            System.out.println("Dari Fragment Movies" + detailTvies);
 
-                        Glide.with(this).load(mtvshows.getTvPoster()).into(imgMoviePoster);
-                        Glide.with(this).load(mtvshows.getTvPoster()).into(imgTrailerLink);
+                            rvPilem.setLayoutManager(new LinearLayoutManager(this));
+                            rvPilem.setHasFixedSize(true);
+                            rvPilem.setAdapter(pilemAdapter);
 
-                        //noinspection deprecation
-                        Glide.with(this).load(mtvshows.getTvPoster())
-                                .apply(bitmapTransform(new BlurTransformation(25, 3)))
-                                .into(new SimpleTarget<Drawable>() {
-                                    @Override
-                                    public void onResourceReady(@NonNull Drawable resource, Transition<? super Drawable> transition) {
-                                        bgMovieDetail.setBackground(resource);
-                                    }
-                                });
-
-                        float backgroundTvRating = Float.parseFloat(mtvshows.getTvRated());
-
-                        if (backgroundTvRating>=8.0){
-                            tvMovieRate.setTextColor(Color.parseColor("#3498db"));
-                        } else if (backgroundTvRating>=7.0){
-                            tvMovieRate.setTextColor(Color.parseColor("#2ecc71"));
-                        } else if (backgroundTvRating>=6.0){
-                            tvMovieRate.setTextColor(Color.parseColor("#f1c40f"));
-                        } else if (backgroundTvRating>=5.0){
-                            tvMovieRate.setTextColor(Color.parseColor("#e67e22"));
-                        } else {
-                            tvMovieRate.setTextColor(Color.parseColor("#e74c3c"));
-                        }
+                        });
 
                         break;
                 }
@@ -151,8 +103,20 @@ public class DetailMovie extends AppCompatActivity {
 
 
             }
+
+
+
         }
 
+
+    }
+
+    private void showLoading(Boolean state) {
+        if (state) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
 
@@ -168,5 +132,13 @@ public class DetailMovie extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @NonNull
+    private static DetailMovieViewModel obtainViewModel(AppCompatActivity activity) {
+        // Use a Factory to inject dependencies into the ViewModel
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+
+        return ViewModelProviders.of(activity, factory).get(DetailMovieViewModel.class);
     }
 }

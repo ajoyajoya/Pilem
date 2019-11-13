@@ -3,11 +3,8 @@ package com.ajoyajoya.pilem.utils;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.ajoyajoya.pilem.data.MovieEntity;
 import com.ajoyajoya.pilem.data.source.remote.RemoteRepository;
 import com.ajoyajoya.pilem.data.source.remote.response.MovieResponse;
 import com.ajoyajoya.pilem.data.source.remote.response.TvshowResponse;
@@ -26,16 +23,13 @@ public class JsonHelper {
 
     private RemoteRepository remoteRepository;
 
-    Application application;
-
     private static final String API_KEY = "6c850abf79ae2a311643afba9e9ff654";
 
-    public List<MovieResponse> loadAllMovies = new ArrayList<>();
+    private List<MovieResponse> loadAllMovies = new ArrayList<>();
 
-    public ArrayList<MovieResponse> listMovies = new ArrayList<>();
+    private ArrayList<MovieResponse> listMovies = new ArrayList<>();
 
     public JsonHelper(Application application) {
-        this.application = application;
     }
 
     public List<MovieResponse> loadMovies() {
@@ -165,8 +159,6 @@ public class JsonHelper {
         return listTvies;
 
     }
-
-
 
 
 

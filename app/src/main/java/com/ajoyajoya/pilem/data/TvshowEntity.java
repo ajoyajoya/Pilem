@@ -9,7 +9,7 @@ public class TvshowEntity {
     private String tvCategory;
     private String tvDesc;
 
-    public TvshowEntity(int tvId, String tvDesc, String tvName, String tvRated, String tvCategory, String tvPoster) {
+    public TvshowEntity(int tvId, String tvPoster, String tvName, String tvRated, String tvCategory, String tvDesc) {
         this.tvId = tvId;
         this.tvPoster = tvPoster;
         this.tvName = tvName;

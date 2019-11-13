@@ -26,7 +26,6 @@ public class MovieViewModel extends ViewModel {
     }
 
     LiveData<List<MovieEntity>> getMoviesAll() {
-
         return pilemRepository.getAllMovies();
 
     }

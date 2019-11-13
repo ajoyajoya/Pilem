@@ -17,11 +17,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.ajoyajoya.pilem.R;
-import com.ajoyajoya.pilem.data.TvshowEntity;
 import com.ajoyajoya.pilem.ui.tvshow.TvShowViewModel;
 import com.ajoyajoya.pilem.viewmodel.ViewModelFactory;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +27,7 @@ public class TvShowFragment extends Fragment {
 
     private RecyclerView rvTvshow;
     private ProgressBar progressBar;
+    private TvShowAdapter tvshowAdapter;
 
 
     public TvShowFragment() {
@@ -44,41 +42,53 @@ public class TvShowFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_tv_show, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         rvTvshow = view.findViewById(R.id.rv_list_tv);
         progressBar = view.findViewById(R.id.progress_bar);
+        progressBar.getIndeterminateDrawable().setColorFilter(0xFF8C1127,android.graphics.PorterDuff.Mode.MULTIPLY);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        progressBar.setVisibility(View.VISIBLE);
         if (getActivity() != null) {
-            TvShowViewModel tvShowViewModel = obtainViewModel(getActivity());
+            showLoading(true);
+            TvShowViewModel tvViewModel = obtainViewModel(getActivity());
+            tvshowAdapter = new TvShowAdapter(getActivity());
 
+            tvViewModel.getAllTvShow().observe(this, tvies -> {
 
-            TvShowAdapter tvShowAdapter = new TvShowAdapter(getActivity());
+                showLoading(false);
+                tvshowAdapter.setListTvShow(tvies);
+                tvshowAdapter.notifyDataSetChanged();
 
-            tvShowViewModel.getAllTvShow().observe(this, tvies -> {
-                tvShowAdapter.setListTvShow(tvies);
-                tvShowAdapter.notifyDataSetChanged();
+                rvTvshow.setLayoutManager(new GridLayoutManager(getContext(),2));
+                rvTvshow.setHasFixedSize(true);
+                rvTvshow.setAdapter(tvshowAdapter);
+
             });
 
-            rvTvshow.setLayoutManager(new GridLayoutManager(getContext(),2));
-            rvTvshow.setHasFixedSize(true);
-            rvTvshow.setAdapter(tvShowAdapter);
         }
-        progressBar.setVisibility(View.GONE);
     }
 
     private TvShowViewModel obtainViewModel(FragmentActivity activity) {
         ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
         return ViewModelProviders.of(activity, factory).get(TvShowViewModel.class);
+    }
+
+    private void showLoading(Boolean state) {
+        if (state) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
 }

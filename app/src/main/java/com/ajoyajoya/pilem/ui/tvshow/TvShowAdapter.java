@@ -26,17 +26,16 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.GridViewHo
 
     private List<TvshowEntity> listTvShow;
 
+    public TvShowAdapter(Context context) {
+        this.context = context;
+    }
+
     private List<TvshowEntity> getListTvShow() {
         return listTvShow;
     }
 
     public void setListTvShow(List<TvshowEntity> listTvShow) {
         this.listTvShow = listTvShow;
-    }
-
-
-    public TvShowAdapter(Context context) {
-        this.context = context;
     }
 
 
@@ -55,7 +54,7 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.GridViewHo
         gridViewHolder.txtMovieRating.setText(getListTvShow().get(gridViewHolder.getAdapterPosition()).getTvRated());
 
         Glide.with(context)
-                .load(getListTvShow().get(gridViewHolder.getAdapterPosition()).getTvPoster())
+                .load("https://image.tmdb.org/t/p/w500"+getListTvShow().get(gridViewHolder.getAdapterPosition()).getTvPoster())
                 .apply(new RequestOptions())
                 .into(gridViewHolder.imgMoviePoster);
 
@@ -78,7 +77,7 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.GridViewHo
             //Toast.makeText(context, "Kamu Memilih "+  getListTvShow().get(position).getTvName(), Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(context, DetailMovie.class);
-            intent.putExtra(DetailMovie.EXTRA_MOVIE, getListTvShow().get(gridViewHolder.getAdapterPosition()).getTvId());
+            intent.putExtra(DetailMovie.EXTRA_MOVIE, "t"+getListTvShow().get(gridViewHolder.getAdapterPosition()).getTvId());
             context.startActivity(intent);
 
         });

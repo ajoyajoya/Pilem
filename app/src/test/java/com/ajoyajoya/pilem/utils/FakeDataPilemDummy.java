@@ -1,12 +1,18 @@
 package com.ajoyajoya.pilem.utils;
 
+import com.ajoyajoya.pilem.data.DetailMovieItems;
 import com.ajoyajoya.pilem.data.MovieEntity;
 import com.ajoyajoya.pilem.data.TvshowEntity;
 import com.ajoyajoya.pilem.data.source.DetailMovieEntity;
+import com.ajoyajoya.pilem.data.source.remote.response.MovieResponse;
+import com.ajoyajoya.pilem.data.source.remote.response.TvshowResponse;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
-class FakeDataPilem {
+public class FakeDataPilemDummy {
 
     public static ArrayList<MovieEntity> generatePilemMovie() {
 
@@ -235,6 +241,168 @@ class FakeDataPilem {
                 "8CjYw1hARhY",
                 "YouTube"));
         return tvshowEntities;
+    }
+
+    public static List<MovieResponse> generateRemoteDummyMovie() {
+
+        List<MovieResponse> movieResponses = new ArrayList<>();
+
+        movieResponses.add(new MovieResponse(
+                290859,
+                "https://image.tmdb.org/t/p/w500/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
+                "Terminator: Dark Fate",
+                "6.5",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "More than two decades have passed since Sarah Connor prevented Judgment Day, changed the future, and re-wrote the fate of the human race. Dani Ramos is living a simple life in Mexico City with her brother and father when a highly advanced and deadly new Terminator – a Rev-9 – travels back through time to hunt and kill her. Dani's survival depends on her joining forces with two warriors: Grace, an enhanced super-soldier from the future, and a battle-hardened Sarah Connor. As the Rev-9 ruthlessly destroys everything and everyone in its path on the hunt for Dani, the three are led to a T-800 from Sarah’s past that may be their last best hope.",
+                "2019-11-01"));
+
+        movieResponses.add(new MovieResponse(
+                330457,
+                "https://image.tmdb.org/t/p/w500/qdfARIhgpgZOBh3vfNhWS4hmSo3.jpg",
+                "Frozen II",
+                "6.8",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "Elsa, Anna, Kristoff and Olaf are going far in the forest to know the truth about an ancient mystery of their kingdom.",
+                "2019-11-22"));
+
+        movieResponses.add(new MovieResponse(
+                568012,
+                "https://image.tmdb.org/t/p/w500/4E2lyUGLEr3yH4q6kJxPkQUhX7n.jpg",
+                "ワンピーススタンピード",
+                "7.3",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \\\"One Piece\\\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew.",
+                "2019-10-24"));
+
+        movieResponses.add(new MovieResponse(
+                501170,
+                "https://image.tmdb.org/t/p/w500/p69QzIBbN06aTYqRRiCOY1emNBh.jpg",
+                "Doctor Sleep",
+                "7.1",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "A traumatized, alcoholic Dan Torrance meets Abra, a kid who also has the ability to \\\"shine.\\\" He tries to protect her from the True Knot, a cult whose goal is to feed off of people like them in order to remain immortal.",
+                "2019-11-08"));
+
+        movieResponses.add(new MovieResponse(
+                480105,
+                "https://image.tmdb.org/t/p/w500/g4z7mDmJmx23vsVg6XNWcnXb6gc.jpg",
+                "47 Meters Down: Uncaged",
+                "5",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "A group of backpackers diving in a ruined underwater city discover that they have stumbled into the territory of the ocean's deadliest shark species.",
+                "2019-08-16"));
+
+        return movieResponses;
+    }
+
+    public static List<TvshowResponse> generateRemoteDummyTvShow() {
+
+        List<TvshowResponse> tvshowResponses = new ArrayList<>();
+
+        tvshowResponses.add(new TvshowResponse(
+                290859,
+                "https://image.tmdb.org/t/p/w500/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
+                "Terminator: Dark Fate",
+                "6.5",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "More than two decades have passed since Sarah Connor prevented Judgment Day, changed the future, and re-wrote the fate of the human race. Dani Ramos is living a simple life in Mexico City with her brother and father when a highly advanced and deadly new Terminator – a Rev-9 – travels back through time to hunt and kill her. Dani's survival depends on her joining forces with two warriors: Grace, an enhanced super-soldier from the future, and a battle-hardened Sarah Connor. As the Rev-9 ruthlessly destroys everything and everyone in its path on the hunt for Dani, the three are led to a T-800 from Sarah’s past that may be their last best hope.",
+                "2019-11-01"));
+
+        tvshowResponses.add(new TvshowResponse(
+                330457,
+                "https://image.tmdb.org/t/p/w500/qdfARIhgpgZOBh3vfNhWS4hmSo3.jpg",
+                "Frozen II",
+                "6.8",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "Elsa, Anna, Kristoff and Olaf are going far in the forest to know the truth about an ancient mystery of their kingdom.",
+                "2019-11-22"));
+
+        tvshowResponses.add(new TvshowResponse(
+                568012,
+                "https://image.tmdb.org/t/p/w500/4E2lyUGLEr3yH4q6kJxPkQUhX7n.jpg",
+                "ワンピーススタンピード",
+                "7.3",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \\\"One Piece\\\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew.",
+                "2019-10-24"));
+
+        tvshowResponses.add(new TvshowResponse(
+                501170,
+                "https://image.tmdb.org/t/p/w500/p69QzIBbN06aTYqRRiCOY1emNBh.jpg",
+                "Doctor Sleep",
+                "7.1",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "A traumatized, alcoholic Dan Torrance meets Abra, a kid who also has the ability to \\\"shine.\\\" He tries to protect her from the True Knot, a cult whose goal is to feed off of people like them in order to remain immortal.",
+                "2019-11-08"));
+
+        tvshowResponses.add(new TvshowResponse(
+                480105,
+                "https://image.tmdb.org/t/p/w500/g4z7mDmJmx23vsVg6XNWcnXb6gc.jpg",
+                "47 Meters Down: Uncaged",
+                "5",
+                "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)",
+                "A group of backpackers diving in a ruined underwater city discover that they have stumbled into the territory of the ocean's deadliest shark species.",
+                "2019-08-16"));
+
+        return tvshowResponses;
+    }
+
+    public static ArrayList<DetailMovieItems> generateRemoteDetailMovie(int idMovie) {
+
+        ArrayList<DetailMovieItems> detailMovieItems = new ArrayList<>();
+        try {
+            JSONObject[] responseObject = new JSONObject[4];
+
+            responseObject[0].put("id", "290859");
+            responseObject[0].put("backdrop_path", "https://image.tmdb.org/t/p/w500/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg");
+            responseObject[0].put("poster_path", "https://image.tmdb.org/t/p/w500/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg");
+            responseObject[0].put("original_title", "Terminator: Dark Fate");
+            responseObject[0].put("vote_average", "6.5");
+            responseObject[0].put("genres", "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)");
+            responseObject[0].put("overview", "More than two decades have passed since Sarah Connor prevented Judgment Day, changed the future, and re-wrote the fate of the human race. Dani Ramos is living a simple life in Mexico City with her brother and father when a highly advanced and deadly new Terminator – a Rev-9 – travels back through time to hunt and kill her. Dani's survival depends on her joining forces with two warriors: Grace, an enhanced super-soldier from the future, and a battle-hardened Sarah Connor. As the Rev-9 ruthlessly destroys everything and everyone in its path on the hunt for Dani, the three are led to a T-800 from Sarah’s past that may be their last best hope.");
+            responseObject[0].put("release_date", "2019-11-01");
+            responseObject[1].getJSONArray("crew").getJSONObject(0).put("name", "Tim Miller");
+            responseObject[1].getJSONArray("crew").getJSONObject(1).put("name", "James Cameron");
+            responseObject[1].getJSONArray("crew").getJSONObject(0).put("job", "Director");
+            responseObject[1].getJSONArray("crew").getJSONObject(1).put("job", "Producer");
+            responseObject[2].getJSONArray("results").getJSONObject(0).put("key", "8CjYw1hARhY");
+            responseObject[2].getJSONArray("results").getJSONObject(0).put("site", "YouTube");
+
+            detailMovieItems.add(new DetailMovieItems(responseObject));
+
+        } catch (Exception ignored) {
+
+        }
+        return detailMovieItems;
+    }
+
+    public static ArrayList<DetailMovieItems> generateRemoteDetailTv(int idMovie) {
+
+        ArrayList<DetailMovieItems> detailTvItems = new ArrayList<>();
+        try {
+            JSONObject[] responseObject = new JSONObject[4];
+
+            responseObject[0].put("id", "290859");
+            responseObject[0].put("backdrop_path", "https://image.tmdb.org/t/p/w500/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg");
+            responseObject[0].put("poster_path", "https://image.tmdb.org/t/p/w500/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg");
+            responseObject[0].put("original_title", "Terminator: Dark Fate");
+            responseObject[0].put("vote_average", "6.5");
+            responseObject[0].put("genres", "R | 2h 16min | Drama, Music, Romance | 5 October 2018 (USA)");
+            responseObject[0].put("overview", "More than two decades have passed since Sarah Connor prevented Judgment Day, changed the future, and re-wrote the fate of the human race. Dani Ramos is living a simple life in Mexico City with her brother and father when a highly advanced and deadly new Terminator – a Rev-9 – travels back through time to hunt and kill her. Dani's survival depends on her joining forces with two warriors: Grace, an enhanced super-soldier from the future, and a battle-hardened Sarah Connor. As the Rev-9 ruthlessly destroys everything and everyone in its path on the hunt for Dani, the three are led to a T-800 from Sarah’s past that may be their last best hope.");
+            responseObject[0].put("release_date", "2019-11-01");
+            responseObject[1].getJSONArray("crew").getJSONObject(0).put("name", "Tim Miller");
+            responseObject[1].getJSONArray("crew").getJSONObject(1).put("name", "James Cameron");
+            responseObject[1].getJSONArray("crew").getJSONObject(0).put("job", "Director");
+            responseObject[1].getJSONArray("crew").getJSONObject(1).put("job", "Producer");
+            responseObject[2].getJSONArray("results").getJSONObject(0).put("key", "8CjYw1hARhY");
+            responseObject[2].getJSONArray("results").getJSONObject(0).put("site", "YouTube");
+
+            detailTvItems.add(new DetailMovieItems(responseObject));
+
+        } catch (Exception ignored) {
+
+        }
+        return detailTvItems;
     }
 
 

@@ -96,6 +96,7 @@ public class MovieResponse implements Parcelable {
         dest.writeString(releaseDate);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public MovieResponse(Parcel in) {
         movieId = in.readInt();
         moviePoster = in.readString();

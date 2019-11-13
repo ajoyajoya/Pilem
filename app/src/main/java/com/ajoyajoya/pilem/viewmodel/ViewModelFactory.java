@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.ajoyajoya.pilem.data.source.PilemRepository;
 import com.ajoyajoya.pilem.di.Injection;
+import com.ajoyajoya.pilem.ui.detail.DetailMovieViewModel;
 import com.ajoyajoya.pilem.ui.movie.MovieViewModel;
 import com.ajoyajoya.pilem.ui.tvshow.TvShowViewModel;
 
@@ -42,6 +43,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory  {
         } else if (modelClass.isAssignableFrom(TvShowViewModel.class)) {
             //noinspection unchecked
             return (T) new TvShowViewModel(mPilemRepository);
+        } else if (modelClass.isAssignableFrom(DetailMovieViewModel.class)){
+            return (T) new DetailMovieViewModel(mPilemRepository);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

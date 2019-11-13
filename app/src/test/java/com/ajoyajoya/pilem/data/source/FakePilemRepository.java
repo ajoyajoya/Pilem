@@ -14,21 +14,21 @@ import com.ajoyajoya.pilem.data.source.remote.response.TvshowResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PilemRepository implements PilemDataSource{
+public class FakePilemRepository implements PilemDataSource{
 
-    private volatile static PilemRepository INSTANCE = null;
+    private volatile static FakePilemRepository INSTANCE = null;
 
     private final RemoteRepository remoteRepository;
 
-    private PilemRepository(@NonNull RemoteRepository remoteRepository) {
+    FakePilemRepository(@NonNull RemoteRepository remoteRepository) {
         this.remoteRepository = remoteRepository;
     }
 
-    public static PilemRepository getInstance(RemoteRepository remoteData) {
+    public static FakePilemRepository getInstance(RemoteRepository remoteData) {
         if (INSTANCE == null) {
-            synchronized (PilemRepository.class) {
+            synchronized (FakePilemRepository.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new PilemRepository(remoteData);
+                    INSTANCE = new FakePilemRepository(remoteData);
                 }
             }
         }

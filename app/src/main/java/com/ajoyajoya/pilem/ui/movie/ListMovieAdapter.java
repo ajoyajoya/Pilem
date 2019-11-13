@@ -18,11 +18,14 @@ import com.ajoyajoya.pilem.ui.detail.DetailMovie;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.CategoryViewHolder> {
 
     private final Context context;
+
     private List<MovieEntity> listMovie;
 
     public ListMovieAdapter(Context context) {
@@ -49,17 +52,22 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Cate
         categoryViewHolder.txtMovieName.setText(getListMovie().get(categoryViewHolder.getAdapterPosition()).getMovieName());
         categoryViewHolder.txtMovieDescription.setText(getListMovie().get(categoryViewHolder.getAdapterPosition()).getMovieDesc());
         categoryViewHolder.txtMovieCategory.setText(getListMovie().get(categoryViewHolder.getAdapterPosition()).getMovieCategory());
-        categoryViewHolder.txtMovieRating.setText(getListMovie().get(categoryViewHolder.getAdapterPosition()).getMovieRated());
+
 
         categoryViewHolder.getAdapterPosition();
 
         Glide.with(context)
-                .load(getListMovie().get(categoryViewHolder.getAdapterPosition()).getMoviePoster())
+                .load("https://image.tmdb.org/t/p/w500"+getListMovie().get(categoryViewHolder.getAdapterPosition()).getMoviePoster())
                 .apply(new RequestOptions())
                 .into(categoryViewHolder.imgMoviePoster);
 
 
         float backgroundRating = Float.parseFloat(getListMovie().get(categoryViewHolder.getAdapterPosition()).getMovieRated());
+
+        NumberFormat nf = new DecimalFormat("##.##");
+        nf.setMinimumFractionDigits(1);
+        String formattedRating = nf.format(backgroundRating);
+        categoryViewHolder.txtMovieRating.setText(formattedRating);
 
         if (backgroundRating>=8.0){
             categoryViewHolder.txtMovieRating.setBackgroundColor(Color.parseColor("#3498db"));
@@ -77,7 +85,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Cate
             //Toast.makeText(context, "Kamu Memilih "+  getListMovie().get(position).getMovieName(), Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(context, DetailMovie.class);
-            intent.putExtra(DetailMovie.EXTRA_MOVIE, getListMovie().get(categoryViewHolder.getAdapterPosition()).getMovieId());
+            intent.putExtra(DetailMovie.EXTRA_MOVIE, "m"+getListMovie().get(categoryViewHolder.getAdapterPosition()).getMovieId());
             context.startActivity(intent);
 
         });

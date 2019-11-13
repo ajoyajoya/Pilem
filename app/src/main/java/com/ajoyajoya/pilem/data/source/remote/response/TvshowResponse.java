@@ -96,6 +96,7 @@ public class TvshowResponse implements Parcelable {
         dest.writeString(releaseDate);
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected TvshowResponse(Parcel in) {
         tvId = in.readInt();
         tvPoster = in.readString();

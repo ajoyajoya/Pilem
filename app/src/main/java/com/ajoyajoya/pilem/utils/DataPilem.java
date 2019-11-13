@@ -1,6 +1,5 @@
 package com.ajoyajoya.pilem.utils;
 
-import com.ajoyajoya.pilem.R;
 import com.ajoyajoya.pilem.data.MovieEntity;
 import com.ajoyajoya.pilem.data.TvshowEntity;
 
