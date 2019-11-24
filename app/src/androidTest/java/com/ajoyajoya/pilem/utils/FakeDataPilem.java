@@ -6,7 +6,7 @@ import com.ajoyajoya.pilem.data.source.DetailMovieEntity;
 
 import java.util.ArrayList;
 
-class FakeDataPilem {
+public class FakeDataPilem {
 
     public static ArrayList<MovieEntity> generatePilemMovie() {
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ajoyajoya.pilem.BuildConfig;
 import com.ajoyajoya.pilem.R;
 import com.ajoyajoya.pilem.data.source.DetailMovieEntity;
 import com.bumptech.glide.Glide;
@@ -58,11 +59,11 @@ public class DetailMovieAdapter extends RecyclerView.Adapter<DetailMovieAdapter.
         holder.tvMovieCat.setText(mData3.get(holder.getAdapterPosition()).getMovieCategory());
         holder.tvMovieDesc.setText(mData3.get(holder.getAdapterPosition()).getMovieDesc());
 
-        Glide.with(context).load("https://image.tmdb.org/t/p/w500"+mData3.get(holder.getAdapterPosition()).getMoviePoster()).into(holder.imgMoviePoster);
-        Glide.with(context).load("https://image.tmdb.org/t/p/w500"+mData3.get(holder.getAdapterPosition()).getMoviePoster()).into(holder.imgTrailerLink);
+        Glide.with(context).load(BuildConfig.URL_IMG+mData3.get(holder.getAdapterPosition()).getMoviePoster()).into(holder.imgMoviePoster);
+        Glide.with(context).load(BuildConfig.URL_IMG+mData3.get(holder.getAdapterPosition()).getMoviePoster()).into(holder.imgTrailerLink);
 
         //noinspection deprecation
-        Glide.with(context).load("https://image.tmdb.org/t/p/w500"+mData3.get(holder.getAdapterPosition()).getMoviePoster())
+        Glide.with(context).load(BuildConfig.URL_IMG+mData3.get(holder.getAdapterPosition()).getMoviePoster())
                 .apply(bitmapTransform(new BlurTransformation(25, 3)))
                 .into(new SimpleTarget<Drawable>() {
                     @Override

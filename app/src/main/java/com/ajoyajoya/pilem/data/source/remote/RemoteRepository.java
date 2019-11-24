@@ -3,6 +3,7 @@ package com.ajoyajoya.pilem.data.source.remote;
 import android.os.Handler;
 import android.util.Log;
 
+import com.ajoyajoya.pilem.BuildConfig;
 import com.ajoyajoya.pilem.data.DetailMovieItems;
 import com.ajoyajoya.pilem.data.source.remote.response.MovieResponse;
 import com.ajoyajoya.pilem.data.source.remote.response.TvshowResponse;
@@ -25,7 +26,7 @@ public class RemoteRepository {
     private static RemoteRepository INSTANCE;
     private final long SERVICE_LATENCY_IN_MILLIS2 = 5000;
 
-    private static final String API_KEY = "6c850abf79ae2a311643afba9e9ff654";
+    private static final String API_KEY = BuildConfig.API_KEY;
     public List<MovieResponse> listMovies = new ArrayList<>();
     public List<TvshowResponse> listTvies = new ArrayList<>();
     public List<DetailMovieItems> listDetailMovies = new ArrayList<>();
@@ -47,7 +48,7 @@ public class RemoteRepository {
         Handler handler = new Handler();
         AsyncHttpClient client = new AsyncHttpClient();
 
-        String url = "https://api.themoviedb.org/3/movie/upcoming?api_key="+API_KEY;
+        String url = BuildConfig.URL_API_MOVIE+API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -104,7 +105,7 @@ public class RemoteRepository {
         Handler handler2 = new Handler();
         AsyncHttpClient client = new AsyncHttpClient();
 
-        String url = "https://api.themoviedb.org/3/tv/top_rated?api_key="+API_KEY;
+        String url = BuildConfig.URL_API_TVSHOW+API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -159,9 +160,9 @@ public class RemoteRepository {
         Handler handler2 = new Handler();
         AsyncHttpClient client = new AsyncHttpClient();
 
-        String url = "https://api.themoviedb.org/3/movie/"+idMovie+"?api_key="+API_KEY;
-        final String url2 = "https://api.themoviedb.org/3/movie/"+idMovie+"/credits?api_key="+API_KEY;
-        final String url3 = "https://api.themoviedb.org/3/movie/"+idMovie+"/videos?api_key="+API_KEY;
+        String url = BuildConfig.DETAIL_MOVIE+idMovie+"?api_key="+API_KEY;
+        final String url2 = BuildConfig.DETAIL_MOVIE+idMovie+"/credits?api_key="+API_KEY;
+        final String url3 = BuildConfig.DETAIL_MOVIE+idMovie+"/videos?api_key="+API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
 
@@ -249,9 +250,9 @@ public class RemoteRepository {
         Handler handler2 = new Handler();
         AsyncHttpClient client = new AsyncHttpClient();
 
-        String url = "https://api.themoviedb.org/3/tv/"+idMovie+"?api_key="+API_KEY;
-        final String url2 = "https://api.themoviedb.org/3/tv/"+idMovie+"/credits?api_key="+API_KEY;
-        final String url3 = "https://api.themoviedb.org/3/tv/"+idMovie+"/videos?api_key="+API_KEY;
+        String url = BuildConfig.DETAIL_TVSHOW+idMovie+"?api_key="+API_KEY;
+        final String url2 = BuildConfig.DETAIL_TVSHOW+idMovie+"/credits?api_key="+API_KEY;
+        final String url3 = BuildConfig.DETAIL_TVSHOW+idMovie+"/videos?api_key="+API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
 

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.ajoyajoya.pilem.BuildConfig;
 import com.ajoyajoya.pilem.data.source.remote.RemoteRepository;
 import com.ajoyajoya.pilem.data.source.remote.response.MovieResponse;
 import com.ajoyajoya.pilem.data.source.remote.response.TvshowResponse;
@@ -19,14 +20,16 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
+@SuppressWarnings("ALL")
 public class JsonHelper {
 
     private RemoteRepository remoteRepository;
 
-    private static final String API_KEY = "6c850abf79ae2a311643afba9e9ff654";
+    private static final String API_KEY = BuildConfig.API_KEY;
 
     private List<MovieResponse> loadAllMovies = new ArrayList<>();
 
+    @SuppressWarnings("CanBeFinal")
     private ArrayList<MovieResponse> listMovies = new ArrayList<>();
 
     public JsonHelper(Application application) {
@@ -38,7 +41,7 @@ public class JsonHelper {
 
         AsyncHttpClient client = new AsyncHttpClient();
 
-        String url = "https://api.themoviedb.org/3/movie/upcoming?api_key="+API_KEY;
+        String url = "https://api.themoviedb.org/3/movie/upcoming?api_key="+BuildConfig.API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -122,7 +125,7 @@ public class JsonHelper {
         ArrayList<TvshowResponse> listTvies = new ArrayList<>();
         AsyncHttpClient client = new AsyncHttpClient();
 
-        String url = "https://api.themoviedb.org/3/tv/top_rated?api_key="+API_KEY;
+        String url = "https://api.themoviedb.org/3/tv/top_rated?api_key="+BuildConfig.API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override

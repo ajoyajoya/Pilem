@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ajoyajoya.pilem.BuildConfig;
 import com.ajoyajoya.pilem.R;
 import com.ajoyajoya.pilem.data.TvshowEntity;
 import com.ajoyajoya.pilem.ui.detail.DetailMovie;
@@ -54,7 +55,7 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.GridViewHo
         gridViewHolder.txtMovieRating.setText(getListTvShow().get(gridViewHolder.getAdapterPosition()).getTvRated());
 
         Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w500"+getListTvShow().get(gridViewHolder.getAdapterPosition()).getTvPoster())
+                .load(BuildConfig.URL_IMG+getListTvShow().get(gridViewHolder.getAdapterPosition()).getTvPoster())
                 .apply(new RequestOptions())
                 .into(gridViewHolder.imgMoviePoster);
 

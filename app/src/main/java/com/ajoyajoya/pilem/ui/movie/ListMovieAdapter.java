@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ajoyajoya.pilem.BuildConfig;
 import com.ajoyajoya.pilem.R;
 import com.ajoyajoya.pilem.data.MovieEntity;
 import com.ajoyajoya.pilem.ui.detail.DetailMovie;
@@ -57,7 +58,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Cate
         categoryViewHolder.getAdapterPosition();
 
         Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w500"+getListMovie().get(categoryViewHolder.getAdapterPosition()).getMoviePoster())
+                .load(BuildConfig.URL_IMG+getListMovie().get(categoryViewHolder.getAdapterPosition()).getMoviePoster())
                 .apply(new RequestOptions())
                 .into(categoryViewHolder.imgMoviePoster);
 
